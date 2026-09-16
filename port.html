@@ -74,7 +74,9 @@
         transition: transform 180ms ease, background 180ms ease;
     }
     .theme-toggle { width: 34px; height: 34px; background: var(--mint-soft); color: var(--mint); font-size: 16px; }
+    .language-toggle { min-width: 48px; height: 34px; padding: 0 9px; background: var(--ink); color: var(--paper); font-size: 11px; }
     .theme-toggle:hover, .primary-button:hover, .secondary-button:hover { transform: translateY(-2px); }
+    .language-toggle:hover { transform: translateY(-2px); background: var(--mint); }
     .primary-button, .secondary-button { display: inline-block; padding: 11px 16px; text-decoration: none; font-size: 13px; }
     .primary-button { color: #fff !important; background: var(--mint); }
     .secondary-button { color: var(--mint) !important; background: var(--mint-soft); }
@@ -171,7 +173,7 @@
         max-width: 650px;
         line-height: 1.75;
     }
-    .cover-content > div:last-child {
+    .cover-contact {
         color: var(--muted) !important;
         font-size: 13px !important;
         margin-top: 28px !important;
@@ -306,6 +308,7 @@
             <a href="#competences">Compétences</a>
             <a href="#projets">Projets</a>
             <a href="#contact">Contact</a>
+            <button class="language-toggle" type="button" aria-label="Switch to English" title="Language">EN</button>
             <button class="theme-toggle" type="button" aria-label="Activer le mode sombre" title="Mode sombre">◐</button>
         </div>
     </nav>
@@ -320,7 +323,7 @@
                 Diplômé en Média Numérique de l'Université Alger 3. Passionné par la création visuelle, la conception d'identités graphiques et la scénarisation de contenus numériques percutants.
             </p>
             <br><br>
-            <div style="margin-top: 15px; font-size: 10pt; line-height: 1.8;">
+            <div class="cover-contact" style="margin-top: 15px; font-size: 10pt; line-height: 1.8;">
     📍 Alger, Algérie &nbsp;|&nbsp; 🎓 Licencié en Média Numérique (2026)<br>
     📞 <b>Téléphone :</b> +213 541432007<br>
     ✉️ <b>Email :</b> abzanis19@gmail.com<br>
@@ -491,6 +494,77 @@
     </div>
 
     <script>
+        const languageToggle = document.querySelector('.language-toggle');
+        const languageContent = {
+            en: {
+                nav: ['Home', 'About', 'Skills', 'Projects', 'Contact'],
+                badge: 'PROFESSIONAL PORTFOLIO',
+                subtitle: 'Junior Graphic Designer & Content Creator',
+                desc: 'Graduate in Digital Media from the University of Algiers 3. Passionate about visual creation, brand identity and impactful digital content.',
+                coverContact: '📍 Algiers, Algeria &nbsp;|&nbsp; 🎓 Bachelor in Digital Media (2026)<br>📞 <b>Phone:</b> +213 541432007<br>✉️ <b>Email:</b> abzanis19@gmail.com<br>🌐 <a href="https://www.linkedin.com/in/anis-abzar-a4209935a" target="_blank">LinkedIn Profile</a> &nbsp;|&nbsp; 📂 <a href="https://drive.google.com/drive/folders/1PWA5hCUxpwIZI2Bp9S7VbQ18rCEelN1G?usp=sharing" target="_blank">Portfolio Drive</a>',
+                actions: ['View my projects', 'Get in touch'],
+                headers: ['ABOUT & JOURNEY', 'SKILLS & TOOLS', 'PROJECTS & WORK', 'CONTACT'],
+                cardTitles: ['PROFESSIONAL PROFILE', 'KEY STRENGTHS', 'EDUCATION & QUALIFICATIONS', 'LANGUAGES & ENVIRONMENT', 'SOFTWARE & TOOLS', 'AREAS OF EXPERTISE'],
+                listItems: [
+                    '<b>Eye for composition:</b> Strong command of typography, color and layout.',
+                    '<b>Dual expertise:</b> Combining graphic design with content strategy.',
+                    '<b>Autonomy & precision:</b> Ability to lead a project from concept to delivery.',
+                    '<b>Bachelor in Digital Media (2026)</b><br><span>University of Algiers 3</span>',
+                    '<b>Certificate in Graphic Design (2025)</b><br><span>Practical training in visual creation</span>',
+                    '<b>Arabic:</b> Native language', '<b>French:</b> Fluent', '<b>English:</b> Fluent', '<b>System:</b> Windows',
+                    '<b>Social Media Design:</b> Promotional visuals and digital banners.', '<b>Visual Design:</b> Layouts for documents and posters.', '<b>Content Creation:</b> Media concepts and storytelling.', '<b>Visual Identity:</b> Vector logos and brand guidelines.'
+                ],
+                skills: ['Design & Retouching:', 'Layout:', 'Video editing:'],
+                projectCats: ['DIGITAL PLATFORM', 'DIGITAL COMMUNICATION', 'VISUAL IDENTITY'],
+                projectTitles: ['Edu Smart', 'Social Media Ads', 'Branding & Logos'],
+                projectDescs: ['Visual design and interface for school management.', 'Creative advertising visuals for social media.', 'Creation of identity elements and brand variations.'],
+                tags: ['Photoshop', 'Illustrator', 'Canva', 'CapCut', 'Graphic Design', 'Branding', 'Photoshop', 'Advertising', 'Illustrator', 'Logo'],
+                serviceKicker: 'WHAT I OFFER', serviceHeading: 'Clear ideas, visuals that stay.',
+                services: ['Graphic design', 'Branding', 'Social media', 'Content creation'],
+                serviceDescs: ['Posters, visuals and coherent compositions for every medium.', 'A simple, recognizable visual identity ready to evolve.', 'Content designed to capture attention and serve your message.', 'Concepts, scripts and digital formats adapted to your audience.'],
+                contactKicker: 'LET’S TALK ABOUT YOUR PROJECT', contactHeading: 'An idea to turn into an image?', contactDesc: 'Available for creative projects, branding and digital content.'
+            },
+            fr: {
+                nav: ['Accueil', 'À propos', 'Compétences', 'Projets', 'Contact'],
+                badge: 'PORTFOLIO PROFESSIONNEL', subtitle: 'Graphiste Junior & Créateur de Contenu',
+                desc: "Diplômé en Média Numérique de l'Université Alger 3. Passionné par la création visuelle, la conception d'identités graphiques et la scénarisation de contenus numériques percutants.",
+                coverContact: '📍 Alger, Algérie &nbsp;|&nbsp; 🎓 Licencié en Média Numérique (2026)<br>📞 <b>Téléphone :</b> +213 541432007<br>✉️ <b>Email :</b> abzanis19@gmail.com<br>🌐 <a href="https://www.linkedin.com/in/anis-abzar-a4209935a" target="_blank">LinkedIn Profile</a> &nbsp;|&nbsp; 📂 <a href="https://drive.google.com/drive/folders/1PWA5hCUxpwIZI2Bp9S7VbQ18rCEelN1G?usp=sharing" target="_blank">Drive Portfolio</a>',
+                actions: ['Voir mes projets', 'Me contacter'], headers: ['À PROPOS & PARCOURS', 'COMPÉTENCES & OUTILS', 'PROJETS & RÉALISATIONS', 'CONTACT'],
+                cardTitles: ['PROFIL PROFESSIONNEL', 'POINTS FORTS', 'ÉDUCATION & DIPLÔMES', 'LANGUES & ENVIRONNEMENT', "LOGICIELS & OUTILS", "DOMAINES D'EXPERTISE"],
+                listItems: ['<b>Sens de la composition :</b> Maîtrise de la typographie, des couleurs et du layout.', '<b>Double compétence :</b> Alliance entre design graphique et stratégie de contenu.', '<b>Autonomie & Rigueur :</b> Capacité à mener un projet de la conception à la livraison.', '<b>Licence en Média Numérique (2026)</b><br><span>Université Alger 3</span>', '<b>Attestation en Infographie (2025)</b><br><span>Formation pratique en création graphique</span>', '<b>Arabe :</b> Langue maternelle', '<b>Français :</b> Courant', '<b>anglais :</b> Courant', '<b>Système :</b> Windows', '<b>Design Réseaux Sociaux :</b> Visuels promotionnels et bannières numériques.', '<b>Conception Visuelle :</b> Mise en page de documents et affiches.', '<b>Création de Contenu :</b> Élaboration de concepts médias et scénarisation.', '<b>Identité Visuelle :</b> Logos vectoriels et chartes graphiques.'],
+                skills: ['Design & Retouche :', 'Mise en page :', 'Montage video:'], projectCats: ['PLATEFORME DIGITALE', 'COMMUNICATION DIGITALE', 'IDENTITÉ VISUELLE'], projectTitles: ['Edu Smart', 'Social Media Ads', 'Branding & Logos'], projectDescs: ["Conception visuelle et interface pour gestion d'écoles.", 'Visuels publicitaires créatifs pour réseaux sociaux.', "Création d'éléments d'identité et déclinaisons."], tags: ['Photoshop', 'Illustrator', 'Canva', 'capcut', 'Graphic Design', 'Branding', 'Photoshop', 'Advertising', 'Illustrator', 'Logo'], serviceKicker: 'CE QUE JE PROPOSE', serviceHeading: 'Des idées claires, des visuels qui restent.', services: ['Design graphique', 'Branding', 'Social media', 'Création de contenu'], serviceDescs: ['Affiches, visuels et compositions cohérentes pour chaque support.', 'Une identité visuelle simple, reconnaissable et prête à évoluer.', "Des contenus pensés pour attirer l'attention et servir votre message.", 'Concepts, scénarios et formats numériques adaptés à votre audience.'], contactKicker: 'PARLONS DE VOTRE PROJET', contactHeading: 'Une idée à transformer en image ?', contactDesc: 'Disponible pour des projets créatifs, du branding et du contenu digital.'
+            }
+        };
+        let currentLanguage = 'fr';
+        const setLanguage = (language) => {
+            const content = languageContent[language];
+            document.documentElement.lang = language;
+            document.querySelectorAll('.nav-links a').forEach((item, index) => item.textContent = content.nav[index]);
+            document.querySelector('.badge').textContent = content.badge;
+            document.querySelector('.subtitle').textContent = content.subtitle;
+            document.querySelector('.desc').textContent = content.desc;
+            document.querySelector('.cover-contact').innerHTML = content.coverContact;
+            document.querySelectorAll('.cover-actions a').forEach((item, index) => item.textContent = content.actions[index]);
+            document.querySelectorAll('.header .title').forEach((item, index) => item.textContent = content.headers[index]);
+            document.querySelectorAll('.card-title').forEach((item, index) => item.textContent = content.cardTitles[index]);
+            document.querySelectorAll('.card li').forEach((item, index) => { item.innerHTML = content.listItems[index]; });
+            document.querySelectorAll('.card p b').forEach((item, index) => item.textContent = content.skills[index]);
+            document.querySelectorAll('.project-cat').forEach((item, index) => item.textContent = content.projectCats[index]);
+            document.querySelectorAll('.project-title').forEach((item, index) => item.textContent = content.projectTitles[index]);
+            document.querySelectorAll('.project-desc').forEach((item, index) => item.textContent = content.projectDescs[index]);
+            document.querySelectorAll('.tag').forEach((item, index) => item.textContent = content.tags[index] || item.textContent);
+            document.querySelector('.services-grid').previousElementSibling.previousElementSibling.textContent = content.serviceKicker;
+            document.querySelector('.section-heading').textContent = content.serviceHeading;
+            document.querySelectorAll('.service-card h3').forEach((item, index) => item.textContent = content.services[index]);
+            document.querySelectorAll('.service-card p').forEach((item, index) => item.textContent = content.serviceDescs[index]);
+            document.querySelector('.contact-panel .section-kicker').textContent = content.contactKicker;
+            document.querySelector('.contact-panel h2').textContent = content.contactHeading;
+            document.querySelector('.contact-panel p').textContent = content.contactDesc;
+            languageToggle.textContent = language === 'fr' ? 'EN' : 'FR';
+            languageToggle.setAttribute('aria-label', language === 'fr' ? 'Switch to English' : 'Passer au français');
+        };
+        languageToggle.addEventListener('click', () => { currentLanguage = currentLanguage === 'fr' ? 'en' : 'fr'; setLanguage(currentLanguage); });
+
         const themeToggle = document.querySelector('.theme-toggle');
         themeToggle.addEventListener('click', () => {
             document.body.classList.toggle('dark-mode');
