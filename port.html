@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio - Abzar Med Anis</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    @page {
+        size: A4 landscape;
+        margin: 0;
+    }
+    :root {
+        --ink: #172126;
+        --muted: #667277;
+        --paper: #f4f6f2;
+        --surface: #ffffff;
+        --line: #dce3de;
+        --mint: #1e8f78;
+        --mint-soft: #dff1e9;
+        --coral: #ed795f;
+        --shadow: 0 18px 45px rgba(28, 48, 43, 0.08);
+    }
+    body.dark-mode {
+        --ink: #edf5f0;
+        --muted: #a9b9b2;
+        --paper: #17221f;
+        --surface: #20302b;
+        --line: #385047;
+        --mint-soft: #25483e;
+        --shadow: 0 18px 45px rgba(0, 0, 0, 0.22);
+        background: #0e1715;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+        margin: 0;
+        padding: 24px 0;
+        font-family: 'DM Sans', 'Segoe UI', sans-serif;
+        color: var(--ink);
+        background: #dfe7e2;
+        line-height: 1.55;
+    }
+    .site-nav {
+        position: fixed;
+        top: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: min(1100px, calc(100% - 36px));
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 12px 16px 12px 20px;
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(220, 227, 222, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(28, 48, 43, 0.1);
+        backdrop-filter: blur(14px);
+        z-index: 10;
+    }
+    .dark-mode .site-nav { background: rgba(23, 34, 31, 0.9); border-color: var(--line); }
+    .nav-brand { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; white-space: nowrap; }
+    .nav-links { display: flex; align-items: center; gap: 20px; }
+    .nav-links a { font-size: 12px; text-decoration: none; color: var(--ink) !important; }
+    .nav-links a:hover { color: var(--mint) !important; }
+    .theme-toggle, .primary-button, .secondary-button {
+        border: 0;
+        cursor: pointer;
+        font: inherit;
+        font-weight: 700;
+        border-radius: 5px;
+        transition: transform 180ms ease, background 180ms ease;
+    }
+    .theme-toggle { width: 34px; height: 34px; background: var(--mint-soft); color: var(--mint); font-size: 16px; }
+    .theme-toggle:hover, .primary-button:hover, .secondary-button:hover { transform: translateY(-2px); }
+    .primary-button, .secondary-button { display: inline-block; padding: 11px 16px; text-decoration: none; font-size: 13px; }
+    .primary-button { color: #fff !important; background: var(--mint); }
+    .secondary-button { color: var(--mint) !important; background: var(--mint-soft); }
+    .cover-actions { display: flex; gap: 10px; margin-top: 28px; }
+    .section-kicker { color: var(--coral); font-size: 11px; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 8px; }
+    .section-heading { position: relative; z-index: 1; font-family: 'Space Grotesk', sans-serif; font-size: clamp(30px, 4vw, 46px); line-height: 1; margin: 0 0 28px; }
+    .page {
+        width: min(1180px, calc(100% - 48px));
+        min-height: 790px;
+        margin: 0 auto 24px;
+        page-break-after: always;
+        padding: clamp(42px, 6vw, 84px);
+        position: relative;
+        overflow: hidden;
+        background: var(--paper);
+        box-shadow: var(--shadow);
+    }
+    .page::before {
+        content: '';
+        position: absolute;
+        width: 260px;
+        height: 260px;
+        right: -110px;
+        top: -120px;
+        border-radius: 50%;
+        background: var(--mint-soft);
+        opacity: 0.8;
+        pointer-events: none;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 16px;
+        margin-bottom: 46px;
+    }
+    .header .name {
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        color: var(--ink);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+    }
+    .header .title {
+        color: var(--mint);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+    }
+    
+    /* Cover */
+    .cover-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 620px;
+        position: relative;
+        z-index: 1;
+    }
+    .badge {
+        display: inline-block;
+        width: fit-content;
+        padding: 7px 12px;
+        background: var(--mint-soft);
+        border: 1px solid #b9dfd0;
+        color: var(--mint);
+        border-radius: 4px;
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        font-weight: bold;
+    }
+    h1 {
+        max-width: 760px;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(46px, 8vw, 92px);
+        line-height: 0.95;
+        letter-spacing: -0.04em;
+        margin: 24px 0 14px;
+        color: var(--ink);
+    }
+    .subtitle {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(18px, 2.4vw, 28px);
+        font-weight: 600;
+        color: var(--coral);
+        margin-bottom: 24px;
+    }
+    .desc {
+        font-size: 16px;
+        color: var(--muted);
+        max-width: 650px;
+        line-height: 1.75;
+    }
+    .cover-content > div:last-child {
+        color: var(--muted) !important;
+        font-size: 13px !important;
+        margin-top: 28px !important;
+    }
+    a { color: var(--mint) !important; font-weight: 600; }
+    
+    /* Layout Grid */
+    .grid { display: flex; gap: 24px; position: relative; z-index: 1; }
+    .col { flex: 1; }
+    .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 26px;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 22px rgba(28, 48, 43, 0.04);
+    }
+    .card-title {
+        color: var(--mint);
+        font-family: 'Space Grotesk', sans-serif;
+        font-weight: 700;
+        margin-bottom: 18px;
+        font-size: 15px;
+        letter-spacing: 0.02em;
+        border-bottom: 1px solid var(--line);
+        padding-bottom: 12px;
+    }
+    .card p { color: var(--muted) !important; }
+    ul { padding-left: 18px; margin: 0; }
+    li { margin-bottom: 12px; font-size: 14px; color: var(--muted); }
+    li b, .card p b { color: var(--ink); }
+    .tag {
+        display: inline-block;
+        background: #edf3ef;
+        color: var(--mint);
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 700;
+        margin-right: 5px;
+        margin-top: 8px;
+    }
+
+    /* Projects Page */
+    .project-grid { display: flex; gap: 20px; position: relative; z-index: 1; }
+    .project-card {
+        flex: 1;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px;
+        overflow: hidden;
+        transition: transform 280ms ease, border-color 280ms ease, box-shadow 280ms ease;
+    }
+    .project-card:hover {
+        transform: translateY(-8px);
+        border-color: #9ccfc0;
+        box-shadow: 0 16px 30px rgba(28, 48, 43, 0.13);
+    }
+    .img-box {
+        width: 100%;
+        height: 220px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #f1f5f2;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        padding: 8px;
+    }
+    .img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: transform 420ms ease, filter 420ms ease;
+    }
+    .project-card:hover .img-box img {
+        transform: scale(1.06);
+        filter: brightness(1.08) saturate(1.08);
+    }
+    .project-cat { color: var(--coral); font-size: 11px; letter-spacing: 0.1em; font-weight: bold; }
+    .project-title { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: var(--ink); margin: 5px 0 7px; }
+    .project-desc { font-size: 13px; color: var(--muted); min-height: 42px; }
+    .project-image-button { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; text-align: left; }
+    .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; position: relative; z-index: 1; }
+    .service-card { padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+    .service-number { color: var(--coral); font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; }
+    .service-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 17px; margin: 18px 0 8px; }
+    .service-card p { color: var(--muted); font-size: 13px; margin: 0; }
+    .contact-panel { position: relative; z-index: 1; display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 28px; background: var(--ink); color: #fff; border-radius: 12px; }
+    .contact-panel h2 { font-family: 'Space Grotesk', sans-serif; margin: 0 0 6px; font-size: 28px; }
+    .contact-panel p { color: #b7c8c0; margin: 0; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 10px; }
+    .contact-links a { padding: 10px 12px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; color: #fff !important; text-decoration: none; font-size: 12px; }
+    .lightbox { position: fixed; inset: 0; display: grid; place-items: center; padding: 24px; background: rgba(10, 18, 16, 0.82); opacity: 0; pointer-events: none; transition: opacity 220ms ease; z-index: 20; }
+    .lightbox.is-open { opacity: 1; pointer-events: auto; }
+    .lightbox img { max-width: min(900px, 92vw); max-height: 82vh; object-fit: contain; border-radius: 8px; background: #fff; padding: 10px; }
+    .lightbox-close { position: absolute; top: 24px; right: 28px; border: 0; background: #fff; color: var(--ink); border-radius: 50%; width: 38px; height: 38px; cursor: pointer; font-size: 22px; }
+
+    @media (max-width: 760px) {
+        body { padding: 72px 0 0; }
+        .site-nav { top: 10px; width: calc(100% - 20px); padding: 10px 12px; }
+        .nav-links { gap: 10px; }
+        .nav-links a { font-size: 10px; }
+        .nav-brand { font-size: 10px; }
+        .page { width: 100%; min-height: 100vh; margin: 0; padding: 34px 22px; }
+        .header { margin-bottom: 32px; }
+        .header .title { font-size: 9px; text-align: right; }
+        .grid, .project-grid { flex-direction: column; }
+        .cover-content { min-height: calc(100vh - 68px); }
+        .project-card { width: 100%; }
+        .img-box { height: 240px; }
+        .services-grid { grid-template-columns: 1fr 1fr; }
+        .contact-panel { align-items: flex-start; flex-direction: column; }
+        .cover-actions { flex-wrap: wrap; }
+    }
+
+    @media print {
+        body { padding: 0; background: var(--paper); }
+        .page { width: 297mm; height: 210mm; min-height: 0; margin: 0; box-shadow: none; }
+    }
+</style>
+</head>
+<body>
+    <nav class="site-nav" aria-label="Navigation principale">
+        <div class="nav-brand">ABZAR / PORTFOLIO</div>
+        <div class="nav-links">
+            <a href="#accueil">Accueil</a>
+            <a href="#parcours">À propos</a>
+            <a href="#competences">Compétences</a>
+            <a href="#projets">Projets</a>
+            <a href="#contact">Contact</a>
+            <button class="theme-toggle" type="button" aria-label="Activer le mode sombre" title="Mode sombre">◐</button>
+        </div>
+    </nav>
+
+    <!-- PAGE 1: COVER -->
+    <div class="page" id="accueil">
+        <div class="cover-content">
+            <span class="badge">PORTFOLIO PROFESSIONNEL</span>
+            <h1>ABZAR MED ANIS</h1>
+            <div class="subtitle">Graphiste Junior & Créateur de Contenu</div>
+            <p class="desc">
+                Diplômé en Média Numérique de l'Université Alger 3. Passionné par la création visuelle, la conception d'identités graphiques et la scénarisation de contenus numériques percutants.
+            </p>
+            <br><br>
+            <div style="margin-top: 15px; font-size: 10pt; line-height: 1.8;">
+    📍 Alger, Algérie &nbsp;|&nbsp; 🎓 Licencié en Média Numérique (2026)<br>
+    📞 <b>Téléphone :</b> +213 541432007<br>
+    ✉️ <b>Email :</b> abzanis19@gmail.com<br>
+    🌐 <a href="https://www.linkedin.com/in/anis-abzar-a4209935a" target="_blank" style="color: #00a8ff; text-decoration: none;">LinkedIn Profile</a> &nbsp;|&nbsp; 
+    📂 <a href="https://drive.google.com/drive/folders/1PWA5hCUxpwIZI2Bp9S7VbQ18rCEelN1G?usp=sharing" target="_blank" style="color: #00a8ff; text-decoration: none;">Drive Portfolio</a>
+</div>
+            <div class="cover-actions">
+                <a class="primary-button" href="#projets">Voir mes projets</a>
+                <a class="secondary-button" href="#contact">Me contacter</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: PARCOURS -->
+    <div class="page" id="parcours">
+        <div class="header">
+            <span class="name">ABZAR MED ANIS</span>
+            <span class="title">À PROPOS & PARCOURS</span>
+        </div>
+        <div class="grid">
+            <div class="col">
+                <div class="card">
+                    <div class="card-title">PROFIL PROFESSIONNEL</div>
+                    <p style="font-size: 9.5pt; line-height: 1.5; color: #cbd5e1;">
+                        Récemment diplômé en Média Numérique à la Faculté des Sciences de l'Information et de la Communication (Université Alger 3). Mon parcours académique me permet d'allier une réflexion stratégique en communication à une maîtrise pratique de la création visuelle.
+                    </p>
+                </div>
+                <div class="card">
+                    <div class="card-title">POINTS FORTS</div>
+                    <ul>
+                        <li><b>Sens de la composition :</b> Maîtrise de la typographie, des couleurs et du layout.</li>
+                        <li><b>Double compétence :</b> Alliance entre design graphique et stratégie de contenu.</li>
+                        <li><b>Autonomie & Rigueur :</b> Capacité à mener un projet de la conception à la livraison.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-title">ÉDUCATION & DIPLÔMES</div>
+                    <ul>
+                        <li><b>Licence en Média Numérique (2026)</b><br><span style="color:#8a99ad;">Université Alger 3</span></li>
+                        <li style="margin-top:10px;"><b>Attestation en Infographie (2025)</b><br><span style="color:#8a99ad;">Formation pratique en création graphique</span></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-title">LANGUES & ENVIRONNEMENT</div>
+                    <ul>
+                        <li><b>Arabe :</b> Langue maternelle</li>
+                        <li><b>Français :</b> Courant </li>
+                        <li><b>anglais :</b> Courant </li>
+                        <li><b>Système :</b> Windows</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: COMPÉTENCES -->
+    <div class="page" id="competences">
+        <div class="header">
+            <span class="name">ABZAR MED ANIS</span>
+            <span class="title">COMPÉTENCES & OUTILS</span>
+        </div>
+        <div class="grid">
+            <div class="col">
+                <div class="card">
+                    <div class="card-title">LOGICIELS & OUTILS</div>
+                    <p style="color:#fff; font-size:9pt; margin-bottom:3px;"><b>Design & Retouche :</b></p>
+                    <span class="tag">Photoshop</span><span class="tag">Illustrator</span>
+                    
+                    <p style="color:#fff; font-size:9pt; margin-top:12px; margin-bottom:3px;"><b>Mise en page :</b></p>
+                    <span class="tag">Canva</span>
+                    <p style="color:#fff; font-size:9pt; margin-top:12px; margin-bottom:3px;"><b>Montage video:</b></p>
+                    <span class="tag">capcut</span>
+
+                   
+                   
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-title">DOMAINES D'EXPERTISE</div>
+                    <ul>
+                        <li><b>Design Réseaux Sociaux :</b> Visuels promotionnels et bannières numériques.</li>
+                        <li><b>Conception Visuelle :</b> Mise en page de documents et affiches.</li>
+                        <li><b>Création de Contenu :</b> Élaboration de concepts médias et scénarisation.</li>
+                        <li><b>Identité Visuelle :</b> Logos vectoriels et chartes graphiques.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div style="height: 20px;"></div>
+        <div class="section-kicker">CE QUE JE PROPOSE</div>
+        <h2 class="section-heading">Des idées claires, des visuels qui restent.</h2>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-number">01</div><h3>Design graphique</h3><p>Affiches, visuels et compositions cohérentes pour chaque support.</p></div>
+            <div class="service-card"><div class="service-number">02</div><h3>Branding</h3><p>Une identité visuelle simple, reconnaissable et prête à évoluer.</p></div>
+            <div class="service-card"><div class="service-number">03</div><h3>Social media</h3><p>Des contenus pensés pour attirer l'attention et servir votre message.</p></div>
+            <div class="service-card"><div class="service-number">04</div><h3>Création de contenu</h3><p>Concepts, scénarios et formats numériques adaptés à votre audience.</p></div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: PROJETS (GALERIE PHOTOS) -->
+    <div class="page" id="projets">
+        <div class="header">
+            <span class="name">ABZAR MED ANIS</span>
+            <span class="title">PROJETS & RÉALISATIONS</span>
+        </div>
+        <div class="project-grid">
+            <div class="project-card">
+                <button class="project-image-button" type="button" data-image="edusmart.png.png" data-alt="EduSmart UI">
+                <div class="img-box">
+                    <img src="edusmart.png.png" alt="EduSmart UI">
+                </div>
+                </button>
+                <div class="project-cat">PLATEFORME DIGITALE</div>
+                <div class="project-title">Edu Smart</div>
+                <div class="project-desc">Conception visuelle et interface pour gestion d'écoles.</div>
+                <span class="tag">Graphic Design</span><span class="tag">Branding</span>
+            </div>
+            <div class="project-card">
+                <button class="project-image-button" type="button" data-image="choes.jpg.png" data-alt="Advertising">
+                <div class="img-box">
+                    <img src="choes.jpg.png" alt="Advertising">
+                </div>
+                </button>
+                <div class="project-cat">COMMUNICATION DIGITALE</div>
+                <div class="project-title">Social Media Ads</div>
+                <div class="project-desc">Visuels publicitaires créatifs pour réseaux sociaux.</div>
+                <span class="tag">Photoshop</span><span class="tag">Advertising</span>
+            </div>
+            <div class="project-card">
+                <button class="project-image-button" type="button" data-image="logos.jpg.jpg" data-alt="Logos Grid">
+                <div class="img-box">
+                    <img src="logos.jpg.jpg" alt="Logos Grid">
+                </div>
+                </button>
+                <div class="project-cat">IDENTITÉ VISUELLE</div>
+                <div class="project-title">Branding & Logos</div>
+                <div class="project-desc">Création d'éléments d'identité et déclinaisons.</div>
+                <span class="tag">Illustrator</span><span class="tag">Logo</span>
+            </div>
+        </div>
+    </div>
+
+    <section class="page" id="contact">
+        <div class="header">
+            <span class="name">ABZAR MED ANIS</span>
+            <span class="title">CONTACT</span>
+        </div>
+        <div class="contact-panel">
+            <div>
+                <div class="section-kicker">PARLONS DE VOTRE PROJET</div>
+                <h2>Une idée à transformer en image ?</h2>
+                <p>Disponible pour des projets créatifs, du branding et du contenu digital.</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:abzanis19@gmail.com">Email</a>
+                <a href="tel:+213541432007">Téléphone</a>
+                <a href="https://www.linkedin.com/in/anis-abzar-a4209935a" target="_blank" rel="noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="lightbox" role="dialog" aria-modal="true" aria-label="Aperçu du projet">
+        <button class="lightbox-close" type="button" aria-label="Fermer">&times;</button>
+        <img src="" alt="">
+    </div>
+
+    <script>
+        const themeToggle = document.querySelector('.theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀' : '◐';
+            themeToggle.setAttribute('aria-label', document.body.classList.contains('dark-mode') ? 'Activer le mode clair' : 'Activer le mode sombre');
+        });
+
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImage = lightbox.querySelector('img');
+        const closeLightbox = () => lightbox.classList.remove('is-open');
+        document.querySelectorAll('.project-image-button').forEach((button) => {
+            button.addEventListener('click', () => {
+                lightboxImage.src = button.dataset.image;
+                lightboxImage.alt = button.dataset.alt;
+                lightbox.classList.add('is-open');
+            });
+        });
+        document.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (event) => { if (event.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeLightbox(); });
+    </script>
+
+</body>
+</html>
